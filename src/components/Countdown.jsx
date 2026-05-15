@@ -28,25 +28,25 @@ export default function Countdown({ date }) {
   }, [date]);
 
   return (
-    <div className="flex justify-center gap-3 px-4 overflow-x-auto">
+    <div className="flex justify-center gap-3 md:gap-6 px-4 overflow-x-auto">
 
-      <div className="bg-white shadow-md p-4 min-w-[70px] text-center">
-        <p className="text-xl md:text-3xl font-semibold">{time.days}</p>
+      <div className="bg-white shadow-md p-3 md:p-6 min-w-[65px] md:min-w-[100px] text-center rounded-lg">
+        <p className="text-xl md:text-4xl font-semibold">{time.days}</p>
         <p className="text-[10px] md:text-sm text-gray-500">Días</p>
       </div>
 
-      <div className="bg-white shadow-md p-4 min-w-[70px] text-center">
-        <p className="text-xl md:text-3xl font-semibold">{time.hours}</p>
+      <div className="bg-white shadow-md p-3 md:p-6 min-w-[65px] md:min-w-[100px] text-center rounded-lg">
+        <p className="text-xl md:text-4xl font-semibold">{time.hours}</p>
         <p className="text-[10px] md:text-sm text-gray-500">Horas</p>
       </div>
 
-      <div className="bg-white shadow-md p-4 min-w-[70px] text-center">
-        <p className="text-xl md:text-3xl font-semibold">{time.minutes}</p>
+      <div className="bg-white shadow-md p-3 md:p-6 min-w-[65px] md:min-w-[100px] text-center rounded-lg">
+        <p className="text-xl md:text-4xl font-semibold">{time.minutes}</p>
         <p className="text-[10px] md:text-sm text-gray-500">Min</p>
       </div>
 
-      <div className="bg-white shadow-md p-4 min-w-[70px] text-center">
-        <p className="text-xl md:text-3xl font-semibold">{time.seconds}</p>
+      <div className="bg-white shadow-md p-3 md:p-6 min-w-[65px] md:min-w-[100px] text-center rounded-lg">
+        <p className="text-xl md:text-4xl font-semibold">{time.seconds}</p>
         <p className="text-[10px] md:text-sm text-gray-500">Seg</p>
       </div>
 
