@@ -243,7 +243,7 @@ export default function Admin() {
                   <button
                     onClick={() =>
                       navigator.clipboard.writeText(
-                        `https://wedding-invitation-brown-six.vercel.app/?code=${g.code}`
+                        `https://boda-javier-yareli.vercel.app/?code=${g.code}`
                       )
                     }
                     className="text-blue-600 underline"
