@@ -48,7 +48,7 @@ export default function RSVP() {
     }
 
     try {
-      await axios.post("http://127.0.0.1:8000/confirm", {
+      await axios.post("https://wedding-invitation-backend-ppr5.onrender.com/confirm", {
         code,
         names: guestNames,
       });

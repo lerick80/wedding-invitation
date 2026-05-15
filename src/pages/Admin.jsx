@@ -24,7 +24,7 @@ export default function Admin() {
   const fetchGuests = async () => {
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/admin/guests",
+        "https://wedding-invitation-backend-ppr5.onrender.com/admin/guests",
         {
           headers: { token },
         }
@@ -47,7 +47,7 @@ export default function Admin() {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/admin/create_guest",
+        "https://wedding-invitation-backend-ppr5.onrender.com/admin/create_guest",
         {
           name: newName,
           guests_allowed: Number(newGuests),
@@ -73,7 +73,7 @@ export default function Admin() {
   const handleExport = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/admin/export",
+        "https://wedding-invitation-backend-ppr5.onrender.com/admin/export",
         {
           headers: { token },
           responseType: "blob",
@@ -243,7 +243,7 @@ export default function Admin() {
                   <button
                     onClick={() =>
                       navigator.clipboard.writeText(
-                        `http://localhost:5173/?code=${g.code}`
+                        `https://wedding-invitation-brown-six.vercel.app/?code=${g.code}`
                       )
                     }
                     className="text-blue-600 underline"
