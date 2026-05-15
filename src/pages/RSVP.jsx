@@ -16,7 +16,7 @@ export default function RSVP() {
     const fetchGuest = async () => {
       try {
         const res = await axios.get(
-          `http://127.0.0.1:8000/guest/${code}`
+          `https://wedding-invitation-backend-ppr5.onrender.com/guest/${code}`
         );
 
         setGuest(res.data);

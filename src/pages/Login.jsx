@@ -10,7 +10,7 @@ export default function Login() {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/admin/login",
+        "https://wedding-invitation-backend-ppr5.onrender.com/admin/login",
         { username, password }
       );
 
