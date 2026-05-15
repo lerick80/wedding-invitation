@@ -14,7 +14,7 @@ export default function Login() {
         { username, password }
       );
 
-      // guardar token
+      // guardar token para admin
       localStorage.setItem("token", res.data.token);
 
       window.location.href = "/admin";
