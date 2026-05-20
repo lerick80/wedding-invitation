@@ -43,7 +43,7 @@ export default function Admin() {
     fetchGuests();
   };
 
-  // ✅ ELIMINAR
+  // Eliminar
   const handleDelete = async (id) => {
     if (!confirm("¿Seguro que deseas eliminar este invitado?")) return;
 
@@ -64,7 +64,7 @@ export default function Admin() {
       g.name.toLowerCase().includes(search.toLowerCase())
     );
 
-  // ✅ MÉTRICAS
+  // Metricas
   const totalAssigned = guests.reduce((a, b) => a + b.guests_allowed, 0);
   const totalConfirmed = guests.reduce((a, b) => a + b.guests_confirmed, 0);
 
@@ -73,7 +73,7 @@ export default function Admin() {
 
       <h1 className="text-4xl mb-6 text-center"
         style={{ fontFamily: "Great Vibes" }}>
-        Panel Admin
+        Control de Invitados
       </h1>
 
       {/* CREAR */}
