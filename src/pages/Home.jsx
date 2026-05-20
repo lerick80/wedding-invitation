@@ -102,7 +102,7 @@ export default function Home() {
                 {/* Recepcion */}
                 <div className="flex items-center mb-12">
                   <div className="w-1/2 text-right pr-8">
-                    <p className="text-gray-600">11:30 hrs</p>
+                    <p className="text-gray-600">12:30 hrs</p>
                   </div>
 
                   <div className="relative">
@@ -117,7 +117,7 @@ export default function Home() {
                 {/* Ceremonia */}
                 <div className="flex items-center mb-12">
                   <div className="w-1/2 text-right pr-8">
-                    <p className="text-gray-600">12:00 hrs</p>
+                    <p className="text-gray-600">13:00 hrs</p>
                   </div>
 
                   <div className="relative">
@@ -132,7 +132,7 @@ export default function Home() {
                 {/* Coctail */}
                 <div className="flex items-center mb-12">
                   <div className="w-1/2 text-right pr-8">
-                    <p className="text-gray-600">13:00 hrs</p>
+                    <p className="text-gray-600">14:00 hrs</p>
                   </div>
 
                   <div className="relative">
@@ -140,14 +140,14 @@ export default function Home() {
                   </div>
 
                   <div className="w-1/2 pl-8 text-left">
-                    <p className="font-medium">Coctail</p>
+                    <p className="font-medium">Coctel</p>
                   </div>
                 </div>
 
                 {/* Banquete */}
                 <div className="flex items-center">
                   <div className="w-1/2 text-right pr-8">
-                    <p className="text-gray-600">14:00 hrs</p>
+                    <p className="text-gray-600">15:00 hrs</p>
                   </div>
 
                   <div className="relative">
