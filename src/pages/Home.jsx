@@ -1,4 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
+import { useState } from "react";
 import Countdown from "../components/Countdown";
 import Navbar from "../components/Navbar";
 import FadeIn from "../components/FadeIn";
@@ -7,6 +8,8 @@ import fondo from '../images/YareJavi.jpg';
 export default function Home() {
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
+  const [openGifts, setOpenGifts] = useState(false);
+
 
   // Bloquea si no tiene code
   if (!code) {
@@ -35,7 +38,8 @@ export default function Home() {
         id="inicio"
         className="h-screen bg-cover bg-center flex items-center justify-center text-white relative"
         style={{
-          backgroundImage: `url(${fondo})`,}}
+          backgroundImage: `url(${fondo})`,
+        }}
       >
         {/* overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
@@ -210,48 +214,110 @@ export default function Home() {
 
       {/* contacto */}
       <section id="contacto" className="bg-neutral-100 py-30 text-center">
-              <FadeIn>
-                <h2
-                  className="text-4xl mb-6"
-                  style={{ fontFamily: "Great Vibes" }}
-                >
-                  ¿Dudas?
-                </h2>
-      
-                <p className="mb-6 text-gray-600">
-                  Contacta a los novios
-                </p>
-      
-                <div className="flex justify-center gap-6 flex-wrap">
-      
-                  <a
-                    href="https://wa.me/7224119098"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-black text-white px-5 py-2"
-                  >
-                    WhatsApp Novio
-                  </a>
-      
-                  <a
-                    href="https://wa.me/7225371319"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-black text-white px-5 py-2"
-                  >
-                    WhatsApp Novia
-                  </a>
-      
-                </div>
-              </FadeIn>
-            </section>
+        <FadeIn>
+          <h2
+            className="text-4xl mb-6"
+            style={{ fontFamily: "Great Vibes" }}
+          >
+            ¿Dudas?
+          </h2>
 
-            {/* powered by */}
-      <section className="bg-white py-1 text-center">
-              <br></br>
-              <p className="mb-6 text-gray-600">
-                  © Powered by Erick LG
+          <p className="mb-6 text-gray-600">
+            Contacta a los novios
+          </p>
+
+          <div className="flex justify-center gap-6 flex-wrap">
+
+            <a
+              href="https://wa.me/7224119098"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black text-white px-5 py-2"
+            >
+              WhatsApp Novio
+            </a>
+
+            <a
+              href="https://wa.me/7225371319"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-black text-white px-5 py-2"
+            >
+              WhatsApp Novia
+            </a>
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* Regalos */}
+      <section className="bg-white py-20 text-center">
+
+        <FadeIn>
+          <h2
+            className="text-4xl mb-6"
+            style={{ fontFamily: "Great Vibes" }}
+          >
+            Regalos
+          </h2>
+
+          {/* Boton */}
+          <button
+            onClick={() => setOpenGifts(!openGifts)}
+            className="bg-black text-white px-6 py-3"
+          >
+            ¿No sabes qué regalarnos?
+          </button>
+
+          {/* Contenido desplegable */}
+          {openGifts && (
+            <div className="mt-10 max-w-xl mx-auto space-y-6 text-gray-600 px-6">
+
+              {/* Sobres */}
+              <div className="border p-5 rounded-lg shadow-sm">
+                <h3 className="font-semibold text-lg mb-2">
+                  Lluvia de sobres
+                </h3>
+
+                <p className="text-sm leading-relaxed">
+                  Nuestro mejor regalo es compartir este día contigo.
+                  Si deseas hacernos un obsequio, puedes hacerlo en forma de
+                  lluvia de sobres, lo cual nos ayudará en esta nueva etapa
+                  que estamos por comenzar.
                 </p>
+              </div>
+
+              {/* Amazon */}
+              <div className="border p-5 rounded-lg shadow-sm">
+                <h3 className="font-semibold text-lg mb-2">
+                  Wishlist en Amazon
+                </h3>
+
+                <p className="text-sm mb-4">
+                  También puedes encontrar algunas opciones de regalo en nuestra lista de Amazon.
+                </p>
+
+                <a
+                  href="https://www.amazon.com.mx" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black text-white px-4 py-2 inline-block"
+                >
+                  Ver lista
+                </a>
+              </div>
+
+            </div>
+          )}
+        </FadeIn>
+
+      </section>
+
+      {/* powered by */}
+      <section className="bg-white py-1 text-center">
+        <br></br>
+        <p className="mb-6 text-gray-600">
+          © Powered by Erick LG
+        </p>
 
       </section>
 
