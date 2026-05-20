@@ -250,7 +250,7 @@ export default function Home() {
       </section>
 
       {/* Regalos */}
-      <section className="bg-white py-20 text-center">
+      <section id="regalos" className="bg-white py-20 text-center">
 
         <FadeIn>
           <h2

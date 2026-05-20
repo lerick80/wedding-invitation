@@ -71,6 +71,10 @@ export default function Navbar() {
             CONTACTO
           </a>
 
+          <a href="#regalos" className="hover:opacity-70">
+            REGALOS
+          </a>
+
         </div>
 
       </div>
