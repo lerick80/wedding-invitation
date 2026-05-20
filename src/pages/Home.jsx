@@ -2,7 +2,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import Countdown from "../components/Countdown";
 import Navbar from "../components/Navbar";
 import FadeIn from "../components/FadeIn";
-import fondo from './images/YareJavi.jpg';
+import fondo from '../images/YareJavi.jpg';
 
 export default function Home() {
   const [searchParams] = useSearchParams();
