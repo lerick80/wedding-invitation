@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const API = "https://wedding-invitation-backend-ppr5.onrender.com";
+const FRONT = "https://boda-javier-yareli.vercel.app";
+
 export default function Admin() {
   const [guests, setGuests] = useState([]);
   const [filter, setFilter] = useState("all");
@@ -11,7 +14,6 @@ export default function Admin() {
 
   const token = localStorage.getItem("token");
 
-  // proteger ruta
   useEffect(() => {
     if (!token) {
       window.location.href = "/login";
@@ -20,89 +22,38 @@ export default function Admin() {
     }
   }, []);
 
-  // obtener invitados
   const fetchGuests = async () => {
-    try {
-      const res = await axios.get(
-        "https://wedding-invitation-backend-ppr5.onrender.com/admin/guests",
-        {
-          headers: { token },
-        }
-      );
-
-      setGuests(res.data);
-
-    } catch (err) {
-      alert("No autorizado");
-      window.location.href = "/login";
-    }
+    const res = await axios.get(`${API}/admin/guests`, {
+      headers: { token },
+    });
+    setGuests(res.data);
   };
 
-  // crear invitado
   const handleCreateGuest = async () => {
-    if (!newName || !newGuests) {
-      alert("Completa los datos");
-      return;
-    }
+    if (!newName || !newGuests) return;
 
-    try {
-      const res = await axios.post(
-        "https://wedding-invitation-backend-ppr5.onrender.com/admin/create_guest",
-        {
-          name: newName,
-          guests_allowed: Number(newGuests),
-        },
-        {
-          headers: { token },
-        }
-      );
+    await axios.post(
+      `${API}/admin/create_guest`,
+      { name: newName, guests_allowed: Number(newGuests) },
+      { headers: { token } }
+    );
 
-      alert(`Invitado creado, código: ${res.data.code}`);
-
-      setNewName("");
-      setNewGuests(1);
-
-      fetchGuests();
-
-    } catch (err) {
-      alert("Error creando invitado");
-    }
+    setNewName("");
+    setNewGuests(1);
+    fetchGuests();
   };
 
-  // exportar excel
-  const handleExport = async () => {
-    try {
-      const response = await axios.get(
-        "https://wedding-invitation-backend-ppr5.onrender.com/admin/export",
-        {
-          headers: { token },
-          responseType: "blob",
-        }
-      );
+  // ✅ ELIMINAR
+  const handleDelete = async (id) => {
+    if (!confirm("¿Seguro que deseas eliminar este invitado?")) return;
 
-      const url = window.URL.createObjectURL(
-        new Blob([response.data])
-      );
+    await axios.delete(`${API}/admin/delete/${id}`, {
+      headers: { token },
+    });
 
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "invitados.xlsx");
-
-      document.body.appendChild(link);
-      link.click();
-
-    } catch (error) {
-      alert("Error al exportar Excel");
-    }
+    fetchGuests();
   };
 
-  // logout
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
-  };
-
-  // filtros
   const filteredGuests = guests
     .filter((g) => {
       if (filter === "confirmed") return g.guests_confirmed > 0;
@@ -113,34 +64,24 @@ export default function Admin() {
       g.name.toLowerCase().includes(search.toLowerCase())
     );
 
+  // ✅ MÉTRICAS
+  const totalAssigned = guests.reduce((a, b) => a + b.guests_allowed, 0);
+  const totalConfirmed = guests.reduce((a, b) => a + b.guests_confirmed, 0);
+
   return (
-    <div className="p-6">
+    <div className="p-6 bg-neutral-100 min-h-screen">
 
-      {/* header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">
-          Panel Admin
-        </h1>
+      <h1 className="text-4xl mb-6 text-center"
+        style={{ fontFamily: "Great Vibes" }}>
+        Panel Admin
+      </h1>
 
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 text-white px-4 py-2"
-        >
-          Cerrar sesión
-        </button>
-      </div>
+      {/* CREAR */}
+      <div className="bg-white p-6 rounded-xl shadow mb-6 text-center">
+        <h2 className="mb-4 font-semibold">Nuevo invitado</h2>
 
-      {/* crear invitado */}
-      <div className="bg-white p-4 rounded-xl shadow mb-6">
-
-        <h2 className="mb-3 font-semibold">
-          Crear nuevo invitado
-        </h2>
-
-        <div className="flex gap-3 flex-wrap">
-
+        <div className="flex justify-center gap-3 flex-wrap">
           <input
-            type="text"
             placeholder="Nombre"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
@@ -149,7 +90,6 @@ export default function Admin() {
 
           <input
             type="number"
-            placeholder="Boletos"
             value={newGuests}
             onChange={(e) => setNewGuests(e.target.value)}
             className="border p-2 w-24"
@@ -157,18 +97,15 @@ export default function Admin() {
 
           <button
             onClick={handleCreateGuest}
-            className="bg-blue-600 text-white px-4 py-2"
+            className="bg-black text-white px-4 py-2"
           >
             Crear
           </button>
-
         </div>
-
       </div>
 
-      {/* filtros */}
-      <div className="flex gap-4 mb-4 flex-wrap">
-
+      {/* FILTROS */}
+      <div className="flex justify-center gap-4 mb-6 flex-wrap">
         <select
           onChange={(e) => setFilter(e.target.value)}
           className="border p-2"
@@ -179,93 +116,79 @@ export default function Admin() {
         </select>
 
         <input
-          type="text"
-          placeholder="Buscar..."
-          className="border p-2"
+          placeholder="Buscar"
           onChange={(e) => setSearch(e.target.value)}
+          className="border p-2"
         />
-
-        <button
-          onClick={handleExport}
-          className="bg-green-600 text-white px-4 py-2"
-        >
-          Exportar Excel
-        </button>
-
       </div>
 
-      {/* tabla */}
-      <div className="overflow-auto bg-white shadow rounded-xl">
-        <table className="w-full border">
-
+      {/* TABLA */}
+      <div className="bg-white rounded-xl shadow overflow-auto">
+        <table className="w-full text-center">
           <thead className="bg-black text-white">
             <tr>
               <th className="p-3">Nombre</th>
-              <th className="p-3">Código</th>
-              <th className="p-3">Asignados</th>
-              <th className="p-3">Confirmados</th>
-              <th className="p-3">Invitados</th>
-              <th className="p-3">Estado</th>
-              <th className="p-3">Acción</th>
+              <th>Código</th>
+              <th>Asignados</th>
+              <th>Confirmados</th>
+              <th>Invitados</th>
+              <th>Acciones</th>
             </tr>
           </thead>
 
           <tbody>
             {filteredGuests.map((g) => (
-              <tr
-                key={g.id}
-                className="text-center border-b hover:bg-gray-100"
-              >
-                <td className="p-2">{g.name}</td>
-                <td className="p-2">{g.code}</td>
+              <tr key={g.id} className="border-b hover:bg-gray-50">
+                <td>{g.name}</td>
+                <td>{g.code}</td>
                 <td>{g.guests_allowed}</td>
-
-                <td
-                  className={
-                    g.guests_confirmed > 0
-                      ? "text-green-600"
-                      : "text-red-500"
-                  }
-                >
+                <td className={g.guests_confirmed > 0 ? "text-green-600" : "text-red-500"}>
                   {g.guests_confirmed}
                 </td>
+                <td>{g.guest_names}</td>
 
-                <td>{g.guest_names || "-"}</td>
+                <td className="flex gap-2 justify-center py-2">
 
-                <td>
-                  {g.guests_confirmed > 0
-                    ? "Confirmado"
-                    : "Pendiente"}
-                </td>
-
-                {/* copiar link */}
-                <td>
+                  {/* COPIAR */}
                   <button
                     onClick={() =>
                       navigator.clipboard.writeText(
-                        `https://boda-javier-yareli.vercel.app/?code=${g.code}`
+                        `${FRONT}/?code=${g.code}`
                       )
                     }
-                    className="text-blue-600 underline"
+                    className="text-blue-600 underline text-sm"
                   >
-                    Copiar link
+                    Link
                   </button>
-                </td>
 
+                  {/* ELIMINAR */}
+                  <button
+                    onClick={() => handleDelete(g.id)}
+                    className="text-red-600 text-sm"
+                  >
+                    Eliminar
+                  </button>
+
+                </td>
               </tr>
             ))}
-
-            {filteredGuests.length === 0 && (
-              <tr>
-                <td colSpan="7" className="p-4 text-gray-400">
-                  Sin resultados
-                </td>
-              </tr>
-            )}
-
           </tbody>
-
         </table>
+      </div>
+
+      {/* MÉTRICAS */}
+      <div className="mt-8 grid grid-cols-2 gap-4 max-w-md mx-auto">
+
+        <div className="bg-white shadow p-4 text-center">
+          <p className="text-2xl font-semibold">{totalAssigned}</p>
+          <p className="text-sm text-gray-500">Boletos asignados</p>
+        </div>
+
+        <div className="bg-white shadow p-4 text-center">
+          <p className="text-2xl font-semibold text-green-600">{totalConfirmed}</p>
+          <p className="text-sm text-gray-500">Confirmados</p>
+        </div>
+
       </div>
 
     </div>
