@@ -2,6 +2,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import Countdown from "../components/Countdown";
 import Navbar from "../components/Navbar";
 import FadeIn from "../components/FadeIn";
+import fondo from './images/YareJavi.jpg';
 
 export default function Home() {
   const [searchParams] = useSearchParams();
@@ -34,9 +35,7 @@ export default function Home() {
         id="inicio"
         className="h-screen bg-cover bg-center flex items-center justify-center text-white relative"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80')",
-        }}
+          backgroundImage: `url(${fondo})`,}}
       >
         {/* overlay */}
         <div className="absolute inset-0 bg-black/50"></div>
