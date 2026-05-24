@@ -265,12 +265,32 @@ export default function Home() {
             onClick={() => setOpenGifts(!openGifts)}
             className="bg-black text-white px-6 py-3"
           >
-            ¿No sabes qué regalarnos?
+            Mesa de Regalos
           </button>
 
           {/* Contenido desplegable */}
           {openGifts && (
             <div className="mt-10 max-w-xl mx-auto space-y-6 text-gray-600 px-6">
+
+              {/* Liverpool */}
+              <div className="border p-5 rounded-lg shadow-sm">
+                <h3 className="font-semibold text-lg mb-2">
+                  Liverpool
+                </h3>
+
+                <p className="text-sm mb-4">
+                  Hemos preparado una mesa de regalos con mucho amor.
+                </p>
+
+                <a
+                  href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/52010509" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black text-white px-4 py-2 inline-block"
+                >
+                  Ver mesa de regalos
+                </a>
+              </div>
 
               {/* Sobres */}
               <div className="border p-5 rounded-lg shadow-sm">
@@ -279,31 +299,10 @@ export default function Home() {
                 </h3>
 
                 <p className="text-sm leading-relaxed">
-                  Nuestro mejor regalo es compartir este día contigo.
-                  Si deseas hacernos un obsequio, puedes hacerlo en forma de
+                  Si lo prefieres, puedes hacerlo en forma de
                   lluvia de sobres, lo cual nos ayudará en esta nueva etapa
                   que estamos por comenzar.
                 </p>
-              </div>
-
-              {/* Amazon */}
-              <div className="border p-5 rounded-lg shadow-sm">
-                <h3 className="font-semibold text-lg mb-2">
-                  Wishlist en Amazon
-                </h3>
-
-                <p className="text-sm mb-4">
-                  También puedes encontrar algunas opciones de regalo en nuestra lista de Amazon.
-                </p>
-
-                <a
-                  href="https://www.amazon.com.mx" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-black text-white px-4 py-2 inline-block"
-                >
-                  Ver lista
-                </a>
               </div>
 
             </div>
