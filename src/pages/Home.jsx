@@ -300,7 +300,7 @@ export default function Home() {
 
                 <p className="text-sm leading-relaxed">
                   Si lo prefieres, puedes hacerlo en forma de
-                  lluvia de sobres, lo cual nos ayudará en esta nueva etapa
+                  sobre, lo cual nos ayudará en esta nueva etapa
                   que estamos por comenzar.
                 </p>
               </div>
