@@ -159,7 +159,7 @@ export default function Home() {
                   </div>
 
                   <div className="w-1/2 pl-8 text-left">
-                    <p className="font-medium">Banquete</p>
+                    <p className="font-medium">Banquete y fiesta</p>
                   </div>
                 </div>
 
@@ -289,6 +289,26 @@ export default function Home() {
                   className="bg-black text-white px-4 py-2 inline-block"
                 >
                   Ver mesa de regalos
+                </a>
+              </div>
+
+              {/* Liverpool */}
+              <div className="border p-5 rounded-lg shadow-sm">
+                <h3 className="font-semibold text-lg mb-2">
+                  Amazon
+                </h3>
+
+                <p className="text-sm mb-4">
+                  Si lo prefieres tenemos también una lista de regalos en amazon.
+                </p>
+
+                <a
+                  href="https://www.amazon.com.mx/baby-reg/javiergonzlez-delgadillo-febrero-2026-tolucadelerdo/1O6JLHMEWQYVL?ref_=cm_sw_r_apin_dp_Q03236CXGJ4SZAT7G7FF&language=en-US" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-black text-white px-4 py-2 inline-block"
+                >
+                  Ver lista de regalos
                 </a>
               </div>
 
