@@ -56,6 +56,9 @@ export default function Home() {
             <p className="mt-4 text-sm">
               ESTAMOS MUY FELICES DE INVITARTE A NUESTRA BODA
             </p>
+            <p className="mt-4 text-sm">
+              27 Junio 2026
+            </p>
           </div>
         </FadeIn>
       </section>
@@ -79,7 +82,7 @@ export default function Home() {
             </p>
 
             <p className="text-gray-600">
-              11:30 hrs
+              12:30 hrs
             </p>
 
             <a
